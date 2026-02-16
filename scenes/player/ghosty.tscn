@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cixtgskmg7y3v"]
+
+[ext_resource type="Texture2D" uid="uid://cx41y1ux4kfnx" path="res://assets/ghosty/ghost_big_idle_animation.png" id="1_ddkeh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddkeh"]
+atlas = ExtResource("1_ddkeh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaaey"]
+atlas = ExtResource("1_ddkeh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odhbp"]
+atlas = ExtResource("1_ddkeh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u5ns"]
+atlas = ExtResource("1_ddkeh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lp4s2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddkeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaaey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odhbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u5ns")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[node name="Ghosty" type="Node2D" unique_id=1354630118]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=628161729]
+position = Vector2(90, 45)
+sprite_frames = SubResource("SpriteFrames_lp4s2")
+animation = &"idle"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.5984266
