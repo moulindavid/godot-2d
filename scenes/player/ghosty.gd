@@ -15,3 +15,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = direction.x < 0
 
 	move_and_slide()
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	# Check if the thing we hit has a parent with a 'die' function
+	if area.name == "Hurtbox":
+		area.get_parent().die()
