@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
+const ATTACK_DAMAGE = 1
 @onready var sprite = $AnimatedSprite2D
 @onready var attack_area = $AttackArea
 
@@ -29,8 +30,8 @@ func perform_attack():
 	# Cleave logic
 	var overlapping_bodies = attack_area.get_overlapping_bodies()
 	for body in overlapping_bodies:
-		if body.has_method("die"):
-			body.die()
+		if body.has_method("take_damage"):
+			body.take_damage(ATTACK_DAMAGE)
 
 # This is the signal function - make sure it is connected!
 func _on_animated_sprite_2d_animation_finished():
