@@ -55,6 +55,8 @@ tile_set = SubResource("TileSet_nnsk1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2112830859]
 top_level = true
+light_mask = 3
+visibility_layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=925652586]
 offset_left = 452.0
@@ -63,7 +65,10 @@ offset_right = 492.0
 offset_bottom = 247.0
 color = Color(0.52639294, 0.33517987, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1182221509]
+[node name="Hurtbox" type="CollisionShape2D" parent="StaticBody2D" unique_id=1182221509]
+show_behind_parent = true
+light_mask = 3
+visibility_layer = 3
 position = Vector2(472.125, 227)
 shape = SubResource("RectangleShape2D_nnsk1")
 
@@ -71,6 +76,8 @@ shape = SubResource("RectangleShape2D_nnsk1")
 position = Vector2(33, 60)
 
 [node name="Blobby" type="CharacterBody2D" parent="." unique_id=281933888]
+light_mask = 3
+visibility_layer = 3
 input_pickable = true
 script = ExtResource("3_k0juu")
 
@@ -79,11 +86,11 @@ position = Vector2(227, 217)
 sprite_frames = SubResource("SpriteFrames_k0juu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blobby" unique_id=241574034]
-position = Vector2(228, 219)
+position = Vector2(227, 219)
 shape = SubResource("CapsuleShape2D_4wyf3")
 
-[node name="HurtBox" type="CollisionShape2D" parent="Blobby" unique_id=1281615850]
+[node name="Hurtbox" type="CollisionShape2D" parent="Blobby" unique_id=1281615850]
 light_mask = 0
-visibility_layer = 2
-position = Vector2(456, 438)
+visibility_layer = 3
+position = Vector2(227, 219)
 shape = SubResource("CapsuleShape2D_4wyf3")

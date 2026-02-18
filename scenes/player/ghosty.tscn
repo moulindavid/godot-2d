@@ -2,6 +2,23 @@
 
 [ext_resource type="Script" uid="uid://5aj2vc3y5ikv" path="res://scenes/player/ghosty.gd" id="1_6ks8a"]
 [ext_resource type="Texture2D" uid="uid://cx41y1ux4kfnx" path="res://assets/ghosty/ghost_big_idle_animation.png" id="1_ddkeh"]
+[ext_resource type="Texture2D" uid="uid://64gqi4ystde7" path="res://assets/ghosty/attack_animation.png" id="2_yxutj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln8s8"]
+atlas = ExtResource("2_yxutj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cott8"]
+atlas = ExtResource("2_yxutj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xxp1"]
+atlas = ExtResource("2_yxutj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwjt1"]
+atlas = ExtResource("2_yxutj")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddkeh"]
 atlas = ExtResource("1_ddkeh")
@@ -21,6 +38,23 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lp4s2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln8s8")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_cott8")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_3xxp1")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_kwjt1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ddkeh")
@@ -47,6 +81,10 @@ height = 54.0
 radius = 21.0
 height = 60.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln8s8"]
+radius = 4.0
+height = 40.0
+
 [node name="Ghosty" type="CharacterBody2D" unique_id=1321214851]
 script = ExtResource("1_6ks8a")
 
@@ -56,21 +94,36 @@ visibility_layer = 2
 texture_filter = 1
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_lp4s2")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame = 3
-frame_progress = 0.5984266
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1643504698]
 position = Vector2(32, 35)
 shape = SubResource("CapsuleShape2D_6ks8a")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1781609251]
+light_mask = 4
+visibility_layer = 4
 
-[node name="HurtBox" type="CollisionShape2D" parent="Area2D" unique_id=392323723]
-position = Vector2(32, 30)
+[node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=392323723]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(32, 31)
 shape = SubResource("CapsuleShape2D_yxutj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=172237142]
 zoom = Vector2(2, 2)
 position_smoothing_speed = 10.0
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=736970673]
+light_mask = 7
+visibility_layer = 0
+position = Vector2(32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1084395100]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(27, -3)
+shape = SubResource("CapsuleShape2D_ln8s8")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
