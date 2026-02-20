@@ -106,8 +106,8 @@ light_mask = 4
 visibility_layer = 4
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Area2D" unique_id=392323723]
-light_mask = 4
-visibility_layer = 4
+light_mask = 0
+visibility_layer = 2
 position = Vector2(32, 31)
 shape = SubResource("CapsuleShape2D_yxutj")
 
@@ -121,8 +121,8 @@ visibility_layer = 0
 position = Vector2(32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1084395100]
-light_mask = 7
-visibility_layer = 7
+light_mask = 2
+visibility_layer = 0
 position = Vector2(27, -3)
 shape = SubResource("CapsuleShape2D_ln8s8")
 
