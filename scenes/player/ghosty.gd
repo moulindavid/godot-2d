@@ -10,7 +10,9 @@ var hit_bodies = [] # Tracks which enemies were already hit this attack
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = direction * SPEED
+	var target_velocity = direction * SPEED
+	velocity = velocity.lerp(target_velocity, 1.0 - exp(-50 * get_physics_process_delta_time()))
+
 	move_and_slide()
 
 	attack_area.look_at(get_global_mouse_position())
@@ -39,8 +41,6 @@ func perform_attack():
 	hit_bodies.clear()
 	sprite.play("attack")
 
-
-# This is the signal function - make sure it is connected!
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "attack":
 		is_attacking = false # Reset the state
