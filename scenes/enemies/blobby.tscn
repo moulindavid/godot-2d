@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://gbw10d4itb5u"]
+
+[ext_resource type="PackedScene" uid="uid://b0qoape8vuqoi" path="res://scenes/enemies/enemy_base.tscn" id="1_2jclj"]
+[ext_resource type="Script" uid="uid://vd3jhspghehl" path="res://scenes/enemies/blobby.gd" id="2_ojbth"]
+[ext_resource type="Texture2D" uid="uid://o1ugj2kyjo6m" path="res://assets/little_ennemy.png" id="2_wclsc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jclj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wclsc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oto7i"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wclsc"]
+radius = 21.0
+
+[node name="Blobby" unique_id=299663437 instance=ExtResource("1_2jclj")]
+script = ExtResource("2_ojbth")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=860339481]
+position = Vector2(0, -28)
+sprite_frames = SubResource("SpriteFrames_2jclj")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=128828303]
+position = Vector2(0, -25)
+shape = SubResource("CircleShape2D_oto7i")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1575236671) index="0" unique_id=654745841]
+position = Vector2(0, -25)
+shape = SubResource("CircleShape2D_wclsc")
